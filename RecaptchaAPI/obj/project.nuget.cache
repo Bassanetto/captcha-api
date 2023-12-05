@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vZhCeHDEx700tzcM+BJBr2gd+kSSBehz+JPhUDt7jt79fmCSwCBvTXwgkQbfO3IOMd10mokNAVmwxyu8aqSkEw==",
+  "dgSpecHash": "XSvnLlgIgxL60CX/BYA0BnyNUsSuCDmAdoA82U1qVzRfJqL71LFoYTX/f/PqgCV1C4ws449PbSMGon9Jtuee7g==",
   "success": true,
-  "projectFilePath": "c:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\RecaptchaAPI.csproj",
+  "projectFilePath": "C:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\RecaptchaAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\m8dev\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\m8dev\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

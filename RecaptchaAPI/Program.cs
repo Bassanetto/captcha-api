@@ -1,22 +1,17 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
-// Adicionar serviços ao contêiner.
-builder.Services.AddHttpClient();
-builder.Services.AddControllers();
-
-// Configurar a aplicação.
-var app = builder.Build();
-
-// Configurar o pipeline de solicitação HTTP.
-if (app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseDeveloperExceptionPage();
+    public static void Main(string[] args)
+    {
+        CreateHostBuilder(args).Build().Run();
+    }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 }
-
-app.UseHttpsRedirection();
-app.UseAuthorization();
-
-// Adicionar os controllers ao pipeline.
-app.MapControllers();
-
-app.Run();

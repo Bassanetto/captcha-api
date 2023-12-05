@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 public class Startup
 {
@@ -13,41 +13,60 @@ public class Startup
 
     public IConfiguration Configuration { get; }
 
+    // Este método é chamado durante o tempo de execução. Use este método para adicionar serviços ao contêiner.
     public void ConfigureServices(IServiceCollection services)
     {
-        services.Configure<RecaptchaSettings>(Configuration.GetSection("Recaptcha"));
-
-        // Outras configurações de serviços...
-        var httpsPort = Configuration.GetValue<int>("HttpsPort");
-        services.AddHttpsRedirection(options => options.HttpsPort = httpsPort);
-        
+        services.AddCors(options =>
+    {
+        options.AddPolicy("MyAllowedOrigins",
+            policy =>
+            {
+                policy.WithOrigins("*")
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+    });
         services.AddControllers();
+        services.AddHttpClient();
+
+
+        // Configuração do Swagger
+        services.AddSwaggerGen(c =>
+        {
+            c.SwaggerDoc("v1", new OpenApiInfo
+            {
+                Title = "Minha API",
+                Version = "v1",
+                Description = "Descrição da API"
+            });
+        });
     }
 
+    // Este método é chamado durante o tempo de execução. Use este método para configurar o pipeline de solicitação HTTP.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
+        app.UseCors("MyAllowedOrigins");
+
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseExceptionHandler("/Home/Error");
-            app.UseHsts();
+            // Middleware para o Swagger somente em ambiente de desenvolvimento
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Minha API V1");
+            });
         }
 
-        app.UseHttpsRedirection();
-        app.UseStaticFiles();
+        // Outras configurações de middleware...
 
         app.UseRouting();
-        app.UseHttpsRedirection();
-        app.UseAuthorization();
+
+        // Outras configurações de roteamento...
 
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            endpoints.MapControllers();
         });
     }
 }

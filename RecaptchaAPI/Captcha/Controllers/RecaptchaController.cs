@@ -1,10 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using System.Net.Http;
-using System.Threading.Tasks;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/captcha")]
 public class RecaptchaController : ControllerBase
 {
     private readonly IConfiguration _configuration;
@@ -17,10 +14,10 @@ public class RecaptchaController : ControllerBase
     }
 
     [HttpPost("verificar-recaptcha")]
-    public async Task<IActionResult> VerificarRecaptcha([FromBody] string token)
+    public async Task<IActionResult> VerificarRecaptcha([FromBody] CaptchaRequest request)
     {
         var chaveSecreta = _configuration["Recaptcha:SecretKey"];
-        var resposta = await _httpClient.PostAsync($"https://www.google.com/recaptcha/api/siteverify?secret={chaveSecreta}&response={token}", null);
+        var resposta = await _httpClient.PostAsync($"https://www.google.com/recaptcha/api/siteverify?secret={chaveSecreta}&response={request.token}", null);
 
         if (resposta.IsSuccessStatusCode)
         {
@@ -32,5 +29,15 @@ public class RecaptchaController : ControllerBase
             // A resposta do reCAPTCHA é inválida
             return BadRequest(new { Success = false, Message = "Falha na verificação do reCAPTCHA." });
         }
+    }
+}
+
+public class CaptchaRequest
+{
+    public string token { get; }
+
+    public CaptchaRequest(string token)
+    {
+        this.token = token;
     }
 }

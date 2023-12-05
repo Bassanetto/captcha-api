@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\RecaptchaAPI.csproj": {}
+    "C:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\RecaptchaAPI.csproj": {}
   },
   "projects": {
-    "c:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\RecaptchaAPI.csproj": {
+    "C:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\RecaptchaAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\RecaptchaAPI.csproj",
+        "projectUniqueName": "C:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\RecaptchaAPI.csproj",
         "projectName": "RecaptchaAPI",
-        "projectPath": "c:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\RecaptchaAPI.csproj",
+        "projectPath": "C:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\RecaptchaAPI.csproj",
         "packagesPath": "C:\\Users\\m8dev\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\obj\\",
+        "outputPath": "C:\\Users\\m8dev\\Projetos\\captcha-api\\RecaptchaAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\m8dev\\AppData\\Roaming\\NuGet\\NuGet.Config"
